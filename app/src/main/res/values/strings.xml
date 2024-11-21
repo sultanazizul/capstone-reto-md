@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ReTo</string>
+    <string name="app_name1">ReTo:\n Recycle Together</string>
+    <string name="title_home">Home</string>
+    <string name="title_knowledge">Knowledge</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_news">News</string>
+    <string name="title_history">History</string>
+    <string name="scan_content_description">Scan button to start the scan process</string>
+    <string name="app_logo">App Logo</string>
+    <string name="description">Start your journey\n to easy waste sorting!</string>
+    <string name="btnGetStarted">Get Started</string>
 </resources>
