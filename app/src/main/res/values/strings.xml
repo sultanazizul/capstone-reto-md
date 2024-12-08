@@ -40,6 +40,7 @@
     <string name="organic_waste">Sampah Organik</string>
     <string name="Hazardous_waste">Limbah Berbahaya</string>
     <string name="noAccount">Belum Punya Akun? Daftar</string>
+    <string name="title_detail_history">Detail History</string>
 
     <string-array name="data_image">
         <item>@drawable/liqiud_waste</item>

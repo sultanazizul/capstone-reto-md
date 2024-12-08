@@ -58,4 +58,10 @@
         android:name="com.example.reto.ui.history.HistoryFragment"
         android:label="@string/title_history"
         tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/navigation_detail_history"
+        android:name="com.example.reto.ui.history.DetailHistoryFragment"
+        android:label="@string/title_detail_history"
+        tools:layout="@layout/fragment_detail_history" />
 </navigation>
