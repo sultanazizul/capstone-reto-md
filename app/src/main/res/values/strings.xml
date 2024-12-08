@@ -19,7 +19,7 @@
     <string name="nonOrganic">Non Organic</string>
     <string name="judulNews">Title News</string>
     <string name="desc">Description</string>
-    <string name="capture">Capture</string>
+    <string name="capture">Ambil Gambar</string>
     <string name="upload_photo">Upload Photo</string>
     <string name="email_error">Email tidak boleh kosong</string>
     <string name="email_invalid">Email tidak valid</string>
@@ -41,6 +41,13 @@
     <string name="Hazardous_waste">Limbah Berbahaya</string>
     <string name="noAccount">Belum Punya Akun? Daftar</string>
     <string name="title_detail_history">Detail History</string>
+    <string name="title_detail_knowledge">Detail Knowledge</string>
+    <string name="title_result">Result</string>
+    <string name="recomendation">Rekomendasi Untukmu</string>
+    <string name="title_upload">Upload</string>
+    <string name="letsScan">Mari Pindai Sampah dengan ReTo!</string>
+    <string name="analyze">Analisa</string>
+    <string name="deleteImage">Delete Image</string>
 
     <string-array name="data_image">
         <item>@drawable/liqiud_waste</item>
