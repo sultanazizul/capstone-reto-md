@@ -22,14 +22,15 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.bottomNavigationView
 
+        // Setup NavController
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        // Setup AppBarConfiguration
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_knowledge,
-                R.id.navigation_scan,
                 R.id.navigation_news,
                 R.id.navigation_history
             )
@@ -37,9 +38,16 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        // Remove FAB background and disable the middle menu item
         navView.background = null
         navView.menu.getItem(2).isEnabled = false
 
+        // Hide the action bar
         supportActionBar?.hide()
+
+        // FAB click listener to navigate to ScanFragment
+        binding.fab.setOnClickListener {
+            navController.navigate(R.id.navigation_scan)
+        }
     }
 }

@@ -9,13 +9,37 @@
         android:id="@+id/navigation_home"
         android:name="com.example.reto.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_detail_knowledge"
+            app:destination="@id/navigation_detail_knowledge" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_knowledge"
+            app:destination="@id/navigation_knowledge" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_news"
+            app:destination="@id/navigation_news" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_knowledge"
         android:name="com.example.reto.ui.knowledge.KnowledgeFragment"
         android:label="@string/title_knowledge"
-        tools:layout="@layout/fragment_knowledge" />
+        tools:layout="@layout/fragment_knowledge">
+        <action
+            android:id="@+id/action_navigation_knowledge_to_navigation_detail_knowledge"
+            app:destination="@id/navigation_detail_knowledge" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detail_knowledge"
+        android:name="com.example.reto.ui.knowledge.DetailKnowledgeFragment"
+        android:label="@string/title_knowledge"
+        tools:layout="@layout/fragment_detail_knowledge">
+        <argument
+            android:name="typeWaste"
+            app:argType="com.example.reto.ui.knowledge.TypeWaste" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_scan"
