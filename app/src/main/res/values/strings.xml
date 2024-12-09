@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">ReTo</string>
+    <string name="app_name1">ReTo:\n Recycle Together</string>
+    <string name="title_home">Home</string>
+    <string name="title_knowledge">Knowledge</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_news">News</string>
+    <string name="title_history">History</string>
+    <string name="scan_content_description">Scan button to start the scan process</string>
+    <string name="app_logo">App Logo</string>
+    <string name="description">Start your journey\n to easy waste sorting!</string>
+    <string name="btnGetStarted">Get Started</string>
+    <string name="titleFragmentHome">Hai, Sobat Reto! 🌱</string>
+    <string name="descFragmentHome">Pilah sampahmu, mulailah recycle!</string>
+    <string name="see_all">see all</string>
+    <string name="title_knowledge2">Types of Waste</string>
+    <string name="scan_history">Scan History</string>
+    <string name="all">All</string>
+    <string name="organic">Organic</string>
+    <string name="nonOrganic">Non Organic</string>
+    <string name="judulNews">Title News</string>
+    <string name="desc">Description</string>
 </resources>
