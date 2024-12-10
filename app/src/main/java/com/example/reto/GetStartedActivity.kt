@@ -4,9 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.reto.ui.login.LoginActivity
+import com.example.reto.ui.register.RegisterActivity
 
 class GetStartedActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,22 +22,28 @@ class GetStartedActivity : AppCompatActivity() {
         if (isFirstLaunch) {
             setContentView(R.layout.activity_get_started)
 
-            val btnGetStarted: Button = findViewById(R.id.buttonGetStarted)
-            btnGetStarted.setOnClickListener {
-                // Set flag isFirstLaunch ke false, agar halaman ini tidak muncul lagi
-                sharedPref.edit().putBoolean("isFirstLaunch", false).apply()
+            val loginButton: Button = findViewById(R.id.loginButton)
+            val signupButton: Button = findViewById(R.id.signupButton)
 
-                // Pindah ke MainActivity
-                val intent = Intent(this, MainActivity::class.java)
+            loginButton.setOnClickListener {
+                // Pindah ke halaman LoginActivity
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
-                finish()  // Menutup GetStartedActivity
             }
+
+            signupButton.setOnClickListener {
+                // Pindah ke halaman RegisterActivity
+                val intent = Intent(this, RegisterActivity::class.java)
+                startActivity(intent)
+            }
+
+            // Set flag isFirstLaunch ke false, agar halaman ini tidak muncul lagi
+            sharedPref.edit().putBoolean("isFirstLaunch", false).apply()
         } else {
             // Jika bukan pertama kali diluncurkan, langsung ke MainActivity
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()  // Menutup GetStartedActivity
+            finish() // Menutup GetStartedActivity
         }
     }
-
 }

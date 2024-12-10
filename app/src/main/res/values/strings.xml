@@ -9,15 +9,102 @@
     <string name="scan_content_description">Scan button to start the scan process</string>
     <string name="app_logo">App Logo</string>
     <string name="description">Start your journey\n to easy waste sorting!</string>
-    <string name="btnGetStarted">Get Started</string>
     <string name="titleFragmentHome">Hai, Sobat Reto! 🌱</string>
     <string name="descFragmentHome">Pilah sampahmu, mulailah recycle!</string>
     <string name="see_all">see all</string>
-    <string name="title_knowledge2">Types of Waste</string>
+    <string name="type_waste">Types of Waste</string>
     <string name="scan_history">Scan History</string>
     <string name="all">All</string>
     <string name="organic">Organic</string>
     <string name="nonOrganic">Non Organic</string>
     <string name="judulNews">Title News</string>
     <string name="desc">Description</string>
+    <string name="capture">Ambil Gambar</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="email_error">Email tidak boleh kosong</string>
+    <string name="email_invalid">Email tidak valid</string>
+    <string name="password_error">Jumlah password kurang dari 6 karakter</string>
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
+    <string name="message_login_and_signup_page">Mohon lengkapi data berikut</string>
+    <string name="email">Email</string>
+    <string name="hintEmail">Masukkan Email Anda</string>
+    <string name="password">Password</string>
+    <string name="title_login_page">Yuk Pilah Sampah Bersama Reto!</string>
+    <string name="hintPassword">Masukkan Password Anda</string>
+    <string name="cannot_empty">Data Tidak Boleh Kosong</string>
+    <string name="register_account">Registrasi Akun</string>
+    <string name="login_account">Masuk Akun</string>
+    <string name="liqiud_waste">Limbah Cair</string>
+    <string name="solid_waste">Limbah Padat</string>
+    <string name="organic_waste">Sampah Organik</string>
+    <string name="Hazardous_waste">Limbah Berbahaya</string>
+    <string name="noAccount">Belum Punya Akun? Daftar</string>
+    <string name="title_detail_history">Detail History</string>
+    <string name="title_detail_knowledge">Detail Knowledge</string>
+    <string name="title_result">Result</string>
+    <string name="recomendation">Rekomendasi Untukmu</string>
+    <string name="title_upload">Upload</string>
+    <string name="letsScan">Mari Pindai Sampah dengan ReTo!</string>
+    <string name="analyze">Analisa</string>
+    <string name="deleteImage">Delete Image</string>
+
+    <string-array name="data_image">
+        <item>@drawable/liqiud_waste</item>
+        <item>@drawable/solid_waste</item>
+        <item>@drawable/organic_waste</item>
+        <item>@drawable/hazardous_waste</item>
+    </string-array>
+
+    <string-array name="data_name">
+        <item>Limbah Cair</item>
+        <item>Limbah Padat</item>
+        <item>Sampah Organik</item>
+        <item>Limbah Berbahaya</item>
+    </string-array>
+
+    <string-array name="data_description">
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+    </string-array>
+
+    <string-array name="data_example">
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+    </string-array>
+
+    <string-array name="data_impact">
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+    </string-array>
+
+    <string-array name="data_manage">
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</item>
+    </string-array>
+
 </resources>

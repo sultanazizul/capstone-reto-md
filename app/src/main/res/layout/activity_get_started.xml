@@ -47,20 +47,46 @@
         tools:ignore="SmallSp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonGetStarted"
-        android:layout_width="wrap_content"
+        android:id="@+id/loginButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_semibold"
-        android:minWidth="200dp"
-        android:paddingHorizontal="16dp"
-        android:text="@string/btnGetStarted"
+        android:backgroundTint="@color/oliveGreen"
         android:textColor="@color/white"
-        app:backgroundTint="@color/oliveGreen"
+        android:textAllCaps="false"
+        android:text="@string/login"
         app:cornerRadius="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/descriptionGetStarted"
-        app:layout_constraintStart_toStartOf="@+id/descriptionGetStarted"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descriptionGetStarted" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/signupButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:backgroundTint="@color/oliveGreen"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:text="@string/register"
+        app:cornerRadius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineVertical"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionGetStarted" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

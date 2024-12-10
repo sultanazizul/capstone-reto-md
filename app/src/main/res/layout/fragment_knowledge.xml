@@ -1,24 +1,223 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8" ?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.knowledge.KnowledgeFragment">
+    android:layout_height="wrap_content"
+    android:id="@+id/fragmentKnowledge">
 
-    <TextView
-        android:id="@+id/tvTitleKnowledge2"
+    <LinearLayout
+        android:id="@+id/linearLayoutTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/title_knowledge2"
-        android:textColor="@color/darkGreen"
-        android:textSize="24sp"
+        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingHorizontal="30dp"
+        android:layout_marginTop="30dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvTitleKnowledge2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/title_knowledge"
+            android:textColor="@color/darkGreen"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvLiqiuidWaste"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            app:cardBackgroundColor="@color/darkGreen"
+            app:cardCornerRadius="10dp"
+            android:elevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivLiqiudWaste"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:contentDescription="@string/type_waste"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/liqiud_waste"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvLiqiudWaste"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/liqiud_waste"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivLiqiudWaste"
+                    tools:ignore="SmallSp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvSolidWaste"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            app:cardBackgroundColor="@color/darkGreen"
+            app:cardCornerRadius="10dp"
+            android:elevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivSolidWaste"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:contentDescription="@string/type_waste"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/solid_waste"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tvTypeWaste"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/solid_waste"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivSolidWaste"
+                    tools:ignore="SmallSp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCard2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvOrganicWaste"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            app:cardBackgroundColor="@color/darkGreen"
+            app:cardCornerRadius="10dp"
+            android:elevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivOrganicWaste"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:contentDescription="@string/type_waste"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/organic_waste"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvOrganicWaste"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/organic_waste"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivOrganicWaste"
+                    tools:ignore="SmallSp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvHazardousWaste"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            app:cardBackgroundColor="@color/darkGreen"
+            app:cardCornerRadius="10dp"
+            android:elevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivHazardousWaste"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:contentDescription="@string/type_waste"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/hazardous_waste"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tvHazardousWaste"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@string/Hazardous_waste"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/poppins_semibold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivHazardousWaste"
+                    tools:ignore="SmallSp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

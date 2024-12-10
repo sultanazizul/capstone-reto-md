@@ -9,19 +9,55 @@
         android:id="@+id/navigation_home"
         android:name="com.example.reto.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_detail_knowledge"
+            app:destination="@id/navigation_detail_knowledge" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_knowledge"
+            app:destination="@id/navigation_knowledge" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_news"
+            app:destination="@id/navigation_news" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_knowledge"
         android:name="com.example.reto.ui.knowledge.KnowledgeFragment"
         android:label="@string/title_knowledge"
-        tools:layout="@layout/fragment_knowledge" />
+        tools:layout="@layout/fragment_knowledge">
+        <action
+            android:id="@+id/action_navigation_knowledge_to_navigation_detail_knowledge"
+            app:destination="@id/navigation_detail_knowledge" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detail_knowledge"
+        android:name="com.example.reto.ui.knowledge.DetailKnowledgeFragment"
+        android:label="@string/title_detail_knowledge"
+        tools:layout="@layout/fragment_detail_knowledge">
+        <argument
+            android:name="typeWaste"
+            app:argType="com.example.reto.ui.knowledge.TypeWaste" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_scan"
         android:name="com.example.reto.ui.scan.ScanFragment"
         android:label="@string/title_scan"
         tools:layout="@layout/fragment_scan" />
+
+    <fragment
+        android:id="@+id/navigation_result"
+        android:name="com.example.reto.ui.scan.ResultFragment"
+        android:label="@string/title_result"
+        tools:layout="@layout/fragment_scan" />
+
+    <fragment
+        android:id="@+id/navigation_upload"
+        android:name="com.example.reto.ui.scan.UploadFragment"
+        android:label="@string/title_upload"
+        tools:layout="@layout/fragment_upload" />
 
     <fragment
         android:id="@+id/navigation_news"
@@ -34,4 +70,10 @@
         android:name="com.example.reto.ui.history.HistoryFragment"
         android:label="@string/title_history"
         tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/navigation_detail_history"
+        android:name="com.example.reto.ui.history.DetailHistoryFragment"
+        android:label="@string/title_detail_history"
+        tools:layout="@layout/fragment_detail_history" />
 </navigation>
