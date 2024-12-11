@@ -1,13 +1,22 @@
 package com.example.reto.ui.register
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.example.reto.R
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.reto.data.repository.AuthRepository
+import kotlinx.coroutines.launch
 
-class RegisterViewModel : AppCompatActivity() {
+class RegisterViewModel(
+    private val authRepository: AuthRepository
+) : ViewModel() {
+    private val _isRegistered = MutableLiveData<Boolean>()
+    val isRegistered: LiveData<Boolean> = _isRegistered
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+    fun register(email: String, password: String) {
+        viewModelScope.launch {
+            authRepository.register(email, password)
+            _isRegistered.value = true
+        }
     }
 }

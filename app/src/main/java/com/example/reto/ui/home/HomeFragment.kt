@@ -1,11 +1,14 @@
 package com.example.reto.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -14,6 +17,8 @@ import androidx.recyclerview.widget.SnapHelper
 import com.example.reto.R
 import com.example.reto.ui.knowledge.TypeWaste
 import com.example.reto.ui.knowledge.TypeWasteAdapter
+import com.example.reto.ui.login.LoginActivity
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -48,6 +53,18 @@ class HomeFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+//        // Logout button
+//        val logoutButton: ImageButton = view.findViewById(R.id.logoutButton)
+//        logoutButton.setOnClickListener {
+//            lifecycleScope.launch {
+//                userPreferences.logout()
+//
+//                // Arahkan ke LoginActivity
+//                val intent = Intent(requireActivity(), LoginActivity::class.java)
+//                startActivity(intent)
+//                requireActivity().finish()
+//            }
+//        }
     }
 
     private fun init(view: View){
@@ -103,6 +120,4 @@ class HomeFragment : Fragment() {
             .actionNavigationHomeToNavigationDetailKnowledge(typeWaste)
         findNavController().navigate(action)
     }
-
-
 }

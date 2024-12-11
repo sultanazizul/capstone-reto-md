@@ -109,8 +109,7 @@
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/emailTextView"
-      app:startIconDrawable="@drawable/ic_email"
-      android:hint="@string/hintEmail">
+      app:startIconDrawable="@drawable/ic_email">
 
     <com.example.reto.ui.custom.EmailEditText
         android:id="@+id/ed_login_email"
@@ -147,7 +146,6 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
       app:startIconDrawable="@drawable/ic_lock"
-      android:hint="@string/hintPassword"
       tools:alpha="100" >
 
     <com.example.reto.ui.custom.PasswordEditText
@@ -161,20 +159,23 @@
   </com.google.android.material.textfield.TextInputLayout>
 
   <TextView
-      android:id="@+id/noAccountTextView"
+      android:id="@+id/noAccount"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginStart="32dp"
       android:layout_marginEnd="32dp"
-      android:layout_marginBottom="10dp"
+      android:layout_marginTop="10dp"
       android:text="@string/noAccount"
       android:textColor="@color/darkGreen"
       android:fontFamily="@font/poppins_regular"
-      android:textSize="12sp"
+      android:textSize="10sp"
       android:gravity="center"
-      app:layout_constraintBottom_toTopOf="@id/loginButton"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent" />
+      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout"
+      tools:alpha="100"
+      tools:ignore="SmallSp" />
 
   <Button
       android:id="@+id/loginButton"
