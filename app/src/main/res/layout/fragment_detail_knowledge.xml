@@ -80,40 +80,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                android:maxLines="5"
                 tools:text="@tools:sample/lorem/random"
                 android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/darkGreen"/>
+                android:textColor="@color/darkGreen"
+                android:justificationMode="inter_word"
+                tools:ignore="UnusedAttribute" />
 
             <TextView
                 android:id="@+id/tvTypeWasteExample"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="6dp"
-                android:maxLines="3"
                 tools:text="@tools:sample/lorem/random"
                 android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/darkGreen"/>
+                android:textColor="@color/darkGreen"
+                android:justificationMode="inter_word"
+                tools:ignore="UnusedAttribute" />
 
             <TextView
                 android:id="@+id/tvTypeWasteImpact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="6dp"
-                android:maxLines="3"
                 tools:text="@tools:sample/lorem/random"
                 android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/darkGreen"/>
+                android:textColor="@color/darkGreen"
+                android:justificationMode="inter_word"
+                tools:ignore="UnusedAttribute" />
 
             <TextView
                 android:id="@+id/tvTypeWasteManage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="6dp"
-                android:maxLines="3"
                 tools:text="@tools:sample/lorem/random"
                 android:fontFamily="@font/poppins_regular"
-                android:textColor="@color/darkGreen"/>
+                android:textColor="@color/darkGreen"
+                android:justificationMode="inter_word"
+                android:paddingBottom="80dp"
+                tools:ignore="UnusedAttribute" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -1,13 +1,10 @@
 package com.example.reto.data.remote.api
 
 import com.example.reto.data.remote.response.LoginResponse
-import com.example.reto.data.remote.response.NewsApiResponse
 import com.example.reto.data.remote.response.RegisterResponse
 import com.example.reto.data.remote.response.ResetPassResponse
-import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
@@ -30,11 +27,5 @@ interface ApiService {
     suspend fun resetPassword (
         @Field("email") email: String
     ): ResetPassResponse
-
-    @GET("organik")
-    fun getOrganikNews(): Call<NewsApiResponse>
-
-    @GET("non-organik")
-    fun getNonOrganikNews(): Call<NewsApiResponse>
 
 }

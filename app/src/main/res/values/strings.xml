@@ -48,9 +48,6 @@
     <string name="letsScan">Mari Pindai Sampah dengan ReTo!</string>
     <string name="analyze">Analisa</string>
     <string name="deleteImage">Delete Image</string>
-    <string name="preview_camera">Preview Camera</string>
-    <string name="cropImage">Image Crop</string>
-
 
     <string-array name="data_image">
         <item>@drawable/liqiud_waste</item>
