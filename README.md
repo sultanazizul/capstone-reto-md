@@ -2,6 +2,7 @@
 *A smart solution for waste management and environmental awareness.*
 
 ---
+![Uploading preview.png…]()
 
 Got waste? Meet ReTo: Recycle Together, the app that makes waste management smarter and simpler! Just scan, and the app will detect the type of waste you’re holding – plastic, paper, or anything in between – and provide guidance on how to handle it properly.   
 
@@ -24,5 +25,6 @@ Say goodbye to confusion and hello to a cleaner, greener future. Let’s manage 
 
 ---
 ## Target Audience
+![Uploading Slide Presentation ReTo.png…]()
 
 ---
