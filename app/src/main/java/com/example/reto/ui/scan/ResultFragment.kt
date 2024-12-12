@@ -1,15 +1,19 @@
 package com.example.reto.ui.scan
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import android.widget.ImageView
+import android.widget.TextView
 import com.example.reto.R
 
 class ResultFragment : Fragment() {
+
+    private lateinit var ivPreview: ImageView
+    private lateinit var tvResultName: TextView
+    private lateinit var tvResultDescription: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,8 +25,14 @@ class ResultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.rvNews)
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.layoutManager = layoutManager
+        ivPreview = view.findViewById(R.id.iv_preview)
+        tvResultName = view.findViewById(R.id.tvResultName)
+        tvResultDescription = view.findViewById(R.id.tvResultDescription)
+
+        val result = arguments?.getString("prediction") ?: "No result"
+        tvResultName.text = result
+
+        // Update deskripsi lebih lanjut jika perlu
+        tvResultDescription.text = "Prediksi ini didasarkan pada model deteksi sampah."
     }
 }

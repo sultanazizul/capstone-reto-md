@@ -30,7 +30,6 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardPreview"
-        style="@style/Widget.Material3.CardView.Outlined"
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:layout_marginTop="12dp"
