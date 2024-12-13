@@ -19,9 +19,6 @@ Say goodbye to confusion and hello to a cleaner, greener future. Let’s manage 
    - Access practical tips to live a more eco-friendly life.
 
 ---
-## Library
-
----
 ## Target Audience
 ![image alt](https://github.com/sultanazizul/capstone-reto-md/blob/a73d42e4e1c45fd74e3fd80b8bef82d29bb63f65/audience.png)
 
