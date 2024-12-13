@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
+    android:id="@+id/ResultFragment"
     tools:context=".ui.scan.ResultFragment">
 
     <!-- Title -->
@@ -31,7 +32,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardPreview"
         android:layout_width="0dp"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutTitle"
@@ -41,29 +42,18 @@
         app:strokeColor="@color/black"
         app:cardCornerRadius="20dp">
 
-        <ImageView
-            android:id="@+id/iv_preview"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/app_name"
-            app:srcCompat="@drawable/ic_image"/>
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_preview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                app:srcCompat="@drawable/ic_image" />
+        </FrameLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-        <ImageButton
-            android:id="@+id/historyButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="end"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/app_name"
-            app:tint="@color/darkGreen"
-            android:src="@drawable/ic_history" />
-    </FrameLayout>
 
     <TextView
         android:id="@+id/tvResultName"
@@ -87,29 +77,5 @@
         android:fontFamily="@font/poppins_regular"
         android:textColor="@color/darkGreen"
         app:layout_constraintTop_toBottomOf="@id/tvResultName"/>
-
-    <TextView
-        android:id="@+id/tvRecomendation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="start"
-        android:text="@string/recomendation"
-        android:textSize="14sp"
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/darkGreen"
-        app:layout_constraintTop_toBottomOf="@id/tvResultDescription"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNews"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/tvRecomendation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:paddingVertical="10dp"
-        tools:listitem="@layout/item_news" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

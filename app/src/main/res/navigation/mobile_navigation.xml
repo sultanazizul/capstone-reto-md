@@ -61,7 +61,13 @@
             app:destination="@id/navigation_result">
             <argument
                 android:name="result"
-                app:argType="string" /> <!-- Ganti dengan tipe data yang sesuai -->
+                app:argType="string" />
+            <argument
+                android:name="imageUri"
+                app:argType="string" />
+            <argument
+                android:name="description"
+                app:argType="string" />
         </action>
     </fragment>
 
@@ -72,9 +78,14 @@
         tools:layout="@layout/fragment_result">
         <argument
             android:name="result"
-            app:argType="string" /> <!-- Ganti dengan tipe data yang sesuai -->
+            app:argType="string" />
+        <argument
+            android:name="imageUri"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
     </fragment>
-
 
     <fragment
         android:id="@+id/navigation_news"
@@ -83,14 +94,19 @@
         tools:layout="@layout/fragment_news" />
 
     <fragment
-        android:id="@+id/navigation_history"
-        android:name="com.example.reto.ui.history.HistoryFragment"
-        android:label="@string/title_history"
-        tools:layout="@layout/fragment_history" />
+        android:id="@+id/navigation_webview"
+        android:name="com.example.reto.ui.news.WebViewFragment"
+        android:label="Web View"
+        tools:layout="@layout/fragment_web_view">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_detail_history"
-        android:name="com.example.reto.ui.history.DetailHistoryFragment"
-        android:label="@string/title_detail_history"
-        tools:layout="@layout/fragment_detail_history" />
+        android:id="@+id/navigation_about"
+        android:name="com.example.reto.ui.about.AboutFragment"
+        android:label="@string/title_about"
+        tools:layout="@layout/fragment_about" />
+
 </navigation>

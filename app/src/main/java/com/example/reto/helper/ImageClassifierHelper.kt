@@ -1,99 +1,129 @@
-package com.example.reto.helper
+package com.example.reto.helper;
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.util.Log
-import com.example.reto.ml.Bestoneyet
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.Log;
+import org.tensorflow.lite.Interpreter;
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
+import java.io.FileInputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.channels.FileChannel;
 
 class ImageClassifierHelper(private val context: Context) {
 
-    private var model: Bestoneyet? = null
+    private var interpreter: Interpreter? = null;
 
     init {
-        // Load the model
         try {
-            model = Bestoneyet.newInstance(context)
+            // Load the TFLite model
+            val modelFile = loadModelFile("bestoneyet.tflite");
+            interpreter = Interpreter(modelFile);
         } catch (e: Exception) {
-            Log.e("ImageClassifierHelper", "Error loading model: ${e.message}")
+            Log.e("ImageClassifierHelper", "Error loading model: ${e.message}");
         }
     }
 
-    // Method to classify image and return the result
-    fun classifyImage(bitmap: Bitmap): String {
-        // Resize image to 512x512
-        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 512, 512, true)
+    // Load model file from assets folder
+    private fun loadModelFile(modelFileName: String): ByteBuffer {
+        val assetFileDescriptor = context.assets.openFd(modelFileName);
+        val fileInputStream = FileInputStream(assetFileDescriptor.fileDescriptor);
+        val fileChannel = fileInputStream.channel;
+        val startOffset = assetFileDescriptor.startOffset;
+        val declaredLength = assetFileDescriptor.declaredLength;
+        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
+    }
 
-        // Check if resizing was successful
-        if (resizedBitmap.width != 512 || resizedBitmap.height != 512) {
-            return "Error: Image resizing failed, unexpected dimensions."
-        }
+    // Tambahkan deskripsi untuk setiap label di ImageClassifierHelper
+    fun classifyImage(bitmap: Bitmap): Pair<String, String> {
+        // Resize the bitmap to the model input size
+        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 512, 512, true);
 
-        // Convert bitmap to ByteBuffer
-        val byteBuffer = bitmapToByteBuffer(resizedBitmap)
+        // Convert the bitmap to ByteBuffer
+        val inputBuffer = bitmapToByteBuffer(resizedBitmap);
 
-        // Prepare the input tensor for the model
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 512, 512, 3), DataType.FLOAT32)
-        inputFeature0.loadBuffer(byteBuffer)
+        // Allocate output buffer
+        val outputBuffer = TensorBuffer.createFixedSize(intArrayOf(1, 7), org.tensorflow.lite.DataType.FLOAT32);
 
-        // Get the model's output
-        val outputs = model?.process(inputFeature0)
-        val outputFeature0 = outputs?.outputFeature0AsTensorBuffer
+        // Run inference
+        interpreter?.run(inputBuffer, outputBuffer.buffer);
 
-        // Handle null output
-        if (outputFeature0 == null) {
-            return "Error: Model output is null."
-        }
-
-        // Get the predicted class index
-        val predictedClassIndex = outputFeature0.floatArray
-            ?.withIndex()
-            ?.maxByOrNull { it.value }?.index ?: -1
-
-        // Calculate confidence
-        val confidence = outputFeature0.floatArray?.maxOrNull() ?: 0.0f
+        // Get the predicted class
+        val predictions = outputBuffer.floatArray;
+        val predictedIndex = predictions.indices.maxByOrNull { predictions[it] } ?: -1;
 
         // Label classes
-        val labels = listOf("B3", "Kaca", "Kertas", "Plastik", "Residu", "Metal", "Organik")
+        val labels = listOf("B3", "Kaca", "Kertas", "Plastik", "Residu", "Metal", "Organik");
 
-        // Return predicted class and confidence
-        val predictedLabel = if (predictedClassIndex != -1) {
-            labels[predictedClassIndex]
+        val predictedLabel = if (predictedIndex != -1) {
+            labels[predictedIndex];
         } else {
-            "Unknown"
+            "Unknown";
         }
 
-        return "Predicted: $predictedLabel with confidence: ${"%.2f".format(confidence * 100)}%"
+        // Map specific predictions to "anorganik"
+        val anorganikLabels = listOf("Kaca", "Kertas", "Plastik", "Metal");
+        val finalLabel = if (predictedLabel in anorganikLabels) "Anorganik" else predictedLabel;
+
+        // Deskripsi hasil prediksi
+        val description = getResultDescription(finalLabel)
+
+        return Pair(finalLabel, description)
     }
 
-    // Method to convert Bitmap to ByteBuffer
-    private fun bitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
-        val byteBuffer = ByteBuffer.allocateDirect(4 * 512 * 512 * 3)
-        byteBuffer.order(ByteOrder.nativeOrder())
-        val intValues = IntArray(512 * 512)
-
-        // Get the pixel data from the bitmap
-        bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
-
-        var pixel = 0
-        // Iterate through the pixels and put values into the byteBuffer
-        for (i in 0 until 512) {
-            for (j in 0 until 512) {
-                val value = intValues[pixel++]
-                byteBuffer.putFloat(((value shr 16 and 0xFF) / 255.0f))  // R
-                byteBuffer.putFloat(((value shr 8 and 0xFF) / 255.0f))   // G
-                byteBuffer.putFloat(((value and 0xFF) / 255.0f))        // B
+    // Fungsi untuk memberikan deskripsi berdasarkan label
+    private fun getResultDescription(result: String): String {
+        return when (result) {
+            "Kaca", "Plastik", "Kertas", "Metal" -> {
+                "Anorganik mencakup material seperti kaca, plastik, logam, dan kertas. " +
+                        "Bahan ini dapat didaur ulang menjadi barang baru, seperti botol kaca, " +
+                        "kantong plastik, dan barang logam. Untuk daur ulang, pastikan bahan ini bersih " +
+                        "dari kotoran dan tidak tercampur dengan bahan organik atau B3. Recycle untuk " +
+                        "mengurangi limbah dan mendukung lingkungan."
+            }
+            "B3" -> {
+                "B3 (Bahan Berbahaya dan Beracun) meliputi bahan kimia, baterai, atau perangkat elektronik " +
+                        "yang dapat membahayakan kesehatan manusia dan lingkungan. Pengelolaan yang tepat " +
+                        "penting untuk menghindari kontaminasi dan kerusakan lingkungan. Jangan dibuang sembarangan. " +
+                        "Serahkan ke fasilitas daur ulang B3 yang terdaftar."
+            }
+            "Residu" -> {
+                "Residu adalah limbah yang tidak bisa didaur ulang atau diproses lebih lanjut. Biasanya, ini " +
+                        "terdiri dari bahan yang terkontaminasi atau sudah terlalu rusak untuk diolah. " +
+                        "Penting untuk meminimalkan limbah ini dengan mengurangi konsumsi dan memilih produk yang lebih ramah lingkungan."
+            }
+            "Organik" -> {
+                "Sampah organik berasal dari bahan-bahan alami seperti sisa makanan dan dedaunan. Sampah ini " +
+                        "dapat diolah menjadi kompos yang berguna untuk pertanian atau kebun. " +
+                        "Cobalah untuk membuat kompos di rumah atau serahkan ke tempat daur ulang organik."
+            }
+            else -> {
+                "Prediksi ini didasarkan dari model deteksi sampah."
             }
         }
-
-        return byteBuffer
     }
 
-    // Close the model to release resources
+    // Convert Bitmap to ByteBuffer
+    private fun bitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
+        val byteBuffer = ByteBuffer.allocateDirect(4 * 512 * 512 * 3);
+        byteBuffer.order(ByteOrder.nativeOrder());
+        val intValues = IntArray(512 * 512);
+        bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height);
+
+        var pixel = 0;
+        for (i in 0 until 512) {
+            for (j in 0 until 512) {
+                val value = intValues[pixel++];
+                byteBuffer.putFloat((value shr 16 and 0xFF).toFloat()); // R
+                byteBuffer.putFloat((value shr 8 and 0xFF).toFloat());  // G
+                byteBuffer.putFloat((value and 0xFF).toFloat());        // B
+            }
+        }
+        return byteBuffer;
+    }
+
+    // Release resources
     fun close() {
-        model?.close()
+        interpreter?.close();
     }
 }

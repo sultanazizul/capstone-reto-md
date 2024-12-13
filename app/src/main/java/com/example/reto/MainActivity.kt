@@ -32,13 +32,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home,
                 R.id.navigation_knowledge,
                 R.id.navigation_news,
-                R.id.navigation_history
+                R.id.navigation_about
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // Remove FAB background and disable the middle menu item
         navView.background = null
         navView.menu.getItem(2).isEnabled = false
 

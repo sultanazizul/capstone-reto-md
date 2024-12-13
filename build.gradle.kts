@@ -2,5 +2,12 @@
 
 plugins {
     alias(libs.plugins.android.application) apply false
+//    id("androidx.navigation/**/.safeargs.kotlin")
     alias(libs.plugins.kotlin.android) apply false
+}
+
+buildscript {
+    dependencies {
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.5")
+    }
 }

@@ -4,8 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.reto.ui.login.LoginActivity
-import com.example.reto.ui.register.RegisterActivity
+import com.example.reto.ui.home.HomeFragment
 
 class GetStartedActivity : AppCompatActivity() {
 
@@ -22,19 +21,13 @@ class GetStartedActivity : AppCompatActivity() {
         if (isFirstLaunch) {
             setContentView(R.layout.activity_get_started)
 
-            val loginButton: Button = findViewById(R.id.loginButton)
-            val signupButton: Button = findViewById(R.id.signupButton)
+            val btnGetStarted: Button = findViewById(R.id.btnGetStarted)
 
-            loginButton.setOnClickListener {
-                // Pindah ke halaman LoginActivity
-                val intent = Intent(this, LoginActivity::class.java)
+            btnGetStarted.setOnClickListener {
+                // Pindah ke MainActivity yang akan menampilkan HomeFragment
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-            }
-
-            signupButton.setOnClickListener {
-                // Pindah ke halaman RegisterActivity
-                val intent = Intent(this, RegisterActivity::class.java)
-                startActivity(intent)
+                finish() // Menutup GetStartedActivity
             }
 
             // Set flag isFirstLaunch ke false, agar halaman ini tidak muncul lagi

@@ -48,6 +48,15 @@
     <string name="letsScan">Mari Pindai Sampah dengan ReTo!</string>
     <string name="analyze">Analisa</string>
     <string name="deleteImage">Delete Image</string>
+    <string name="preview_camera">Preview Camera</string>
+    <string name="cropImage">Image Crop</string>
+    <string name="save">Save</string>
+    <string name="getstarted">Mulai</string>
+    <string name="title_about">About</string>
+    <string name="titleAbout">Reto: Recycle Together 🌍♻️</string>
+    <string name="slogan">A smart solution for waste management and environmental awareness.</string>
+    <string name="pembatas">----------------------------------------------</string>
+    <string name="descAbout">Got waste? Meet ReTo: Recycle Together, the app that makes waste management smarter and simpler! Just scan, and the app will detect the type of waste you’re holding – plastic, paper, or anything in between – and provide guidance on how to handle it properly.\n\nBut that’s not all! ReTo also comes with educational content about different types of waste and their impact, along with the latest news.\n\nSay goodbye to confusion and hello to a cleaner, greener future. Let’s manage waste easily and effectively with ReTo!</string>
 
     <string-array name="data_image">
         <item>@drawable/liqiud_waste</item>
@@ -64,47 +73,50 @@
     </string-array>
 
     <string-array name="data_description">
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
+        <item>Limbah cair merupakan sisa buangan berbentuk cair yang dihasilkan dari berbagai kegiatan manusia, seperti rumah tangga, industri, pertanian, dan komersial. Limbah ini sering kali mengandung bahan kimia, partikel padatan, atau zat biologis yang dapat mencemari lingkungan jika tidak dikelola dengan baik.</item>
+        <item>Limbah padat mencakup berbagai jenis sampah yang dihasilkan dari aktivitas manusia, termasuk material yang sulit terurai seperti kaca, keramik, plastik, kertas, logam, dan kaleng. Setiap jenis limbah padat ini memiliki karakteristik yang mempengaruhi cara pengelolaannya.</item>
+        <item>Sampah organik merupakan jenis limbah yang berasal dari bahan-bahan alami seperti sisa makanan, daun, ranting, atau daging busuk, yang dapat terurai secara alami oleh mikroorganisme. Sampah ini umumnya ditemukan di rumah tangga, terutama dari sisa makanan dan limbah kebun.</item>
+        <item>Limbah berbahaya merupakan jenis limbah yang mengandung bahan beracun, mudah terbakar, korosif, atau reaktif, sehingga menimbulkan risiko besar terhadap lingkungan dan kesehatan manusia. Limbah ini dapat berasal dari berbagai sumber, termasuk industri, rumah sakit, laboratorium, dan rumah tangga.</item>
     </string-array>
 
     <string-array name="data_example">
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
+        <item>Contoh :\n
+            •   Air bekas cucian dari rumah tangga\n
+            •   Limbah industri seperti air sisa pabrik tekstil\n
+            •   Air irigasi yang mengandung pestisida atau pupuk dari sektor pertanian\n
+            •   Di rumah sakit, cairan medis atau kimia yang terkontaminasi</item>
+        <item>Contoh :\n
+            •	Kaca dan Keramik : \nLimbah kaca sering kali berasal dari botol, kaca pecah, atau kemasan kaca lainnya. Keramik, yang meliputi pecahan porselen atau alat makan yang rusak, juga termasuk dalam kategori limbah padat. Keduanya dapat bertahan lama di lingkungan karena tidak dapat terurai secara alami. \n\n
+            •	Plastik : \nLimbah plastik merupakan salah satu jenis sampah yang paling umum dan mencemari lingkungan. Produk plastik seperti kantong plastik, botol, kemasan makanan, dan sisa produk lainnya seringkali berakhir di tempat pembuangan akhir dan dapat mencemari tanah dan air karena plastik membutuhkan waktu ratusan tahun untuk terurai. \n\n
+            •	Kertas : \nLimbah kertas berasal dari berbagai produk, seperti koran, majalah, kotak kemasan, dan kertas kantor. Meskipun dapat didaur ulang, limbah kertas yang tidak dikelola dengan baik dapat menyebabkan penumpukan di TPA dan mencemari lingkungan. \n\n
+            •	Logam dan Kaleng : \nLimbah logam, seperti kaleng minuman, kaleng makanan, atau potongan logam lainnya, juga menjadi bagian penting dari limbah padat. Logam cenderung tahan lama dan tidak mudah terurai, namun logam seperti aluminium dan baja dapat didaur ulang secara efisien.</item>
+        <item>Contoh :\n
+            •   Sisa sayuran\n
+            •	Kulit buah\n
+            •	Daun kering\n
+            •	Ranting pohon\n
+            •	Ampas kopi Kulit telur\n
+            •	Sisa daging atau ikan</item>
+        <item>Contoh :\n
+            •   Baterai bekas\n
+            •   Cat yang mengandung bahan kimia berbahaya\n
+            •   Limbah medis seperti jarum suntik dan obat-obatan kadaluarsa\n
+            •   Limbah industri seperti oli bekas, pestisida, dan bahan kimia yang mudah terbakar\n
+            •   Barang elektronik seperti papan sirkuit dan perangkat elektronik lainnya juga termasuk karena kandungan logam beratnya\n</item>
     </string-array>
 
     <string-array name="data_impact">
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
+        <item>Dampak limbah cair yang tidak dikelola dengan baik sangat besar. Pencemaran air yang diakibatkannya dapat merusak ekosistem perairan, membunuh biota air, dan mengganggu keseimbangan alam. Selain itu, air yang terkontaminasi dapat menyebabkan penyakit seperti kolera, diare, dan infeksi kulit pada manusia.</item>
+        <item>Limbah padat yang tidak dikelola dengan baik dapat menyebabkan berbagai dampak negatif. Misalnya, limbah kaca dan keramik yang tidak terkelola dengan benar bisa mencemari tanah dan merusak ekosistem, karena mereka tidak dapat terurai. Limbah plastik yang tersebar di alam dapat mencemari perairan, membahayakan kehidupan laut, dan menyebabkan masalah kesehatan jika dikonsumsi oleh hewan. Sampah kertas, jika tidak didaur ulang, juga bisa memperburuk deforestasi dan mencemari tanah. Limbah logam dan kaleng, jika tidak diproses dengan benar, dapat merusak lingkungan serta membebani kapasitas tempat pembuangan akhir.</item>
+        <item>Jika tidak dikelola dengan baik, sampah organik dapat menimbulkan masalah lingkungan dan kesehatan. Selama proses pembusukan, sampah ini menghasilkan gas metana, yang merupakan gas rumah kaca berbahaya yang berkontribusi pada perubahan iklim. Selain itu, penumpukan sampah organik di tempat pembuangan dapat mencemari tanah dan air dengan cairan lindi yang dihasilkan. Sampah yang tidak terkelola juga menjadi tempat berkembang biaknya lalat, tikus, dan organisme penyebab penyakit.</item>
+        <item>Limbah berbahaya yang tidak dikelola dengan baik dapat mencemari tanah, air, dan udara, serta menyebabkan dampak kesehatan yang serius. Misalnya, kebocoran bahan kimia beracun ke tanah dapat merusak kualitas tanah dan mencemari air tanah. Pembakaran limbah berbahaya yang tidak sesuai prosedur dapat menghasilkan gas beracun yang mencemari udara dan memengaruhi kesehatan manusia, seperti gangguan pernapasan atau bahkan keracunan. Selain itu, limbah berbahaya dapat membahayakan flora dan fauna di sekitar lingkungan pembuangan.</item>
     </string-array>
 
     <string-array name="data_manage">
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
-        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</item>
+        <item>Pengelolaan limbah cair mencakup serangkaian proses yang dirancang untuk mengurangi dampak negatif terhadap lingkungan. Tahap pertama adalah pengolahan primer, yang berfokus pada pemisahan partikel besar atau padatan tersuspensi melalui proses sedimentasi. Selanjutnya, pengolahan sekunder dilakukan dengan metode biologis, di mana mikroorganisme digunakan untuk mengurai bahan organik yang terkandung dalam limbah cair. Tahap pengolahan tersier bertujuan untuk menghilangkan polutan yang lebih sulit diurai, menggunakan teknologi canggih seperti filtrasi atau osmosis balik. Setelah melalui proses tersebut, limbah cair yang sudah diolah dapat dimanfaatkan kembali untuk keperluan lain, seperti irigasi atau kebutuhan industri, tentunya dengan pengawasan yang ketat agar memastikan bahwa dampaknya terhadap lingkungan dan kesehatan manusia tetap minimal.</item>
+        <item>Pengelolaan limbah padat yang efektif dimulai dengan pemilahan sampah di sumbernya. Limbah kaca dan keramik dapat dipisahkan untuk didaur ulang atau dihancurkan menjadi material yang dapat digunakan untuk konstruksi. Limbah plastik harus dipisahkan berdasarkan jenisnya, karena beberapa jenis plastik lebih mudah didaur ulang daripada yang lain, dan beberapa plastik bisa dimanfaatkan kembali dalam pembuatan barang baru. Limbah kertas dapat didaur ulang menjadi produk kertas baru atau diolah menjadi kompos. Sedangkan limbah logam dan kaleng, yang sering kali mengandung logam berharga, harus dipisahkan dan didaur ulang untuk mengurangi kebutuhan bahan baku baru. Proses daur ulang logam seperti aluminium dan baja dapat mengurangi dampak lingkungan dan menghemat energi. Penerapan kebijakan yang mendukung pengelolaan sampah secara efisien, serta peningkatan kesadaran masyarakat mengenai pemilahan dan daur ulang, sangat penting untuk mengurangi dampak negatif limbah padat terhadap lingkungan.</item>
+        <item>Pengelolaan sampah organik yang baik dimulai dengan memisahkan limbah ini dari jenis sampah lainnya untuk memastikan penanganannya lebih efisien. Sampah organik sebaiknya dibuang ke dalam wadah hijau yang dirancang khusus untuk limbah alami, sehingga tidak tercampur dengan sampah anorganik. Selanjutnya, pengolahan dapat dilakukan melalui berbagai cara. Salah satu cara yang umum adalah pembuatan kompos, di mana sampah organik diolah menjadi pupuk dengan bantuan mikroorganisme. Proses ini tidak hanya efektif untuk mengurangi volume sampah, tetapi juga menghasilkan pupuk yang bermanfaat bagi pertanian dan taman. Alternatif lainnya adalah menggunakan biodigester untuk mengolah sampah organik menjadi biogas, yang dapat dimanfaatkan sebagai sumber energi ramah lingkungan. Pada skala yang lebih besar, komunitas atau kota dapat memanfaatkan fasilitas pengomposan industri atau instalasi pengolahan biogas untuk menangani limbah organik dalam jumlah besar. Dengan pengelolaan yang benar, sampah organik tidak hanya berkontribusi pada pengurangan dampak negatif terhadap lingkungan, tetapi juga menjadi sumber daya yang bermanfaat bagi manusia.</item>
+        <item>Limbah berbahaya yang tidak dikelola dengan baik dapat mencemari tanah, air, dan udara, serta menyebabkan dampak kesehatan yang serius. Misalnya, kebocoran bahan kimia beracun ke tanah dapat merusak kualitas tanah dan mencemari air tanah. Pembakaran limbah berbahaya yang tidak sesuai prosedur dapat menghasilkan gas beracun yang mencemari udara dan memengaruhi kesehatan manusia, seperti gangguan pernapasan atau bahkan keracunan. Selain itu, limbah berbahaya dapat membahayakan flora dan fauna di sekitar lingkungan pembuangan.</item>
     </string-array>
 
 </resources>

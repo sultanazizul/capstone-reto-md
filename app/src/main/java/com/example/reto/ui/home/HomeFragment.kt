@@ -1,13 +1,13 @@
 package com.example.reto.ui.home
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +17,10 @@ import androidx.recyclerview.widget.SnapHelper
 import com.example.reto.R
 import com.example.reto.ui.knowledge.TypeWaste
 import com.example.reto.ui.knowledge.TypeWasteAdapter
-import com.example.reto.ui.login.LoginActivity
+import com.example.reto.ui.news.NewsAdapter
+import com.example.reto.data.remote.api.ApiConfig
+import com.example.reto.data.remote.response.NewsResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
@@ -25,6 +28,8 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var typeWasteList: ArrayList<TypeWaste>
     private lateinit var typeWasteAdapter: TypeWasteAdapter
+    private lateinit var newsRecyclerView: RecyclerView
+    private lateinit var newsAdapter: NewsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,62 +41,71 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init(view)
+        loadNews()
 
-        // klik see all untuk masuk ke page knowledge
-        val tvSeeAllKnowledge: TextView = view.findViewById(R.id.tvSeeAllKnowledge)
-        tvSeeAllKnowledge.setOnClickListener {
-            val action = HomeFragmentDirections
-                .actionNavigationHomeToNavigationKnowledge()
-            findNavController().navigate(action)
+        view.findViewById<TextView>(R.id.tvSeeAllKnowledge).setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_navigation_knowledge)
         }
 
-        // klik see all untuk masuk ke page news
-        val tvSeeAllNews: TextView = view.findViewById(R.id.tvSeeAllNews)
-        tvSeeAllNews.setOnClickListener {
-            val action = HomeFragmentDirections
-                .actionNavigationHomeToNavigationNews()
-            findNavController().navigate(action)
+        view.findViewById<TextView>(R.id.tvSeeAllNews).setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_navigation_news)
         }
-
-//        // Logout button
-//        val logoutButton: ImageButton = view.findViewById(R.id.logoutButton)
-//        logoutButton.setOnClickListener {
-//            lifecycleScope.launch {
-//                userPreferences.logout()
-//
-//                // Arahkan ke LoginActivity
-//                val intent = Intent(requireActivity(), LoginActivity::class.java)
-//                startActivity(intent)
-//                requireActivity().finish()
-//            }
-//        }
     }
 
-    private fun init(view: View){
+    private fun init(view: View) {
         recyclerView = view.findViewById(R.id.rvTypeWaste)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(
             requireContext(),
             RecyclerView.HORIZONTAL,
-            false)
+            false
+        )
 
-        val snapHelper : SnapHelper = LinearSnapHelper()
+        val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(recyclerView)
 
         typeWasteList = ArrayList()
-
         typeWasteList.addAll(addDataToList())
         typeWasteAdapter = TypeWasteAdapter(typeWasteList)
         recyclerView.adapter = typeWasteAdapter
 
-        typeWasteAdapter.setOnItemClickCallback(object : TypeWasteAdapter.OnItemClickCallback{
+        typeWasteAdapter.setOnItemClickCallback(object : TypeWasteAdapter.OnItemClickCallback {
             override fun onItemClicked(data: TypeWaste) {
                 showSelected(data)
             }
         })
+
+        newsRecyclerView = view.findViewById(R.id.rvNewsHome)
+        newsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        newsAdapter = NewsAdapter(mutableListOf()) { article ->
+            Toast.makeText(requireContext(), article.title, Toast.LENGTH_SHORT).show()
+        }
+        newsRecyclerView.adapter = newsAdapter
     }
 
-    private fun addDataToList():ArrayList<TypeWaste>{
+    private fun loadNews() {
+        val apiService = ApiConfig.getApiService()
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val response = apiService.getOrganikNews() // Ambil berita organik sebagai contoh
+                val articles = response.articles?.take(5) ?: emptyList() // Ambil hanya 5 data
+                lifecycleScope.launch(Dispatchers.Main) {
+                    newsAdapter.updateData(articles)
+                }
+            } catch (e: Exception) {
+                Log.e("HomeFragment", "Error: ${e.message}")
+                lifecycleScope.launch(Dispatchers.Main) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Gagal memuat berita: ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun addDataToList(): ArrayList<TypeWaste> {
         val dataImg = resources.obtainTypedArray(R.array.data_image)
         val dataName = resources.getStringArray(R.array.data_name)
         val dataDescription = resources.getStringArray(R.array.data_description)
@@ -100,14 +114,14 @@ class HomeFragment : Fragment() {
         val dataManage = resources.getStringArray(R.array.data_manage)
 
         val typeWasteList = ArrayList<TypeWaste>()
-        for (i in dataName.indices){
+        for (i in dataName.indices) {
             val typeWaste = TypeWaste(
-                dataImg.getResourceId(i, -1),
-                dataName[i],
-                dataDescription[i],
-                dataExample[i],
-                dataImpact[i],
-                dataManage[i]
+                typeWasteImage = dataImg.getResourceId(i, -1),
+                typeWasteName = dataName[i],
+                typeWasteDescription = dataDescription[i],
+                typeWasteExample = dataExample[i],
+                typeWasteImpact = dataImpact[i],
+                typeWasteManage = dataManage[i]
             )
             typeWasteList.add(typeWaste)
         }
@@ -116,8 +130,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun showSelected(typeWaste: TypeWaste) {
-        val action = HomeFragmentDirections
-            .actionNavigationHomeToNavigationDetailKnowledge(typeWaste)
-        findNavController().navigate(action)
+        val bundle = Bundle().apply {
+            putParcelable("typeWaste", typeWaste)
+        }
+        findNavController().navigate(
+            R.id.action_navigation_home_to_navigation_detail_knowledge,
+            bundle
+        )
     }
 }

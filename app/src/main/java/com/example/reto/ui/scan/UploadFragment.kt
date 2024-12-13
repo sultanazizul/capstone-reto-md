@@ -14,16 +14,13 @@ import android.widget.ImageView
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.reto.R
 import com.google.android.material.button.MaterialButton
 import com.yalantis.ucrop.UCrop
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
 import java.util.UUID
-import com.example.reto.ml.Bestoneyet
-import org.tensorflow.lite.support.image.TensorImage
 import com.example.reto.helper.ImageClassifierHelper
 
 class UploadFragment : Fragment() {
@@ -31,8 +28,11 @@ class UploadFragment : Fragment() {
     private lateinit var imageView: ImageView
     private lateinit var btnCrop: ImageButton
     private lateinit var btnDelete: ImageButton
-    private lateinit var btnAnalyze: MaterialButton  // Tombol Analisis
+    private lateinit var btnAnalyze: MaterialButton
     private lateinit var classifierHelper: ImageClassifierHelper
+
+    // Using shared ViewModel
+    private val resultViewModel: ResultViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,17 +43,15 @@ class UploadFragment : Fragment() {
         imageView = binding.findViewById(R.id.iv_preview)
         btnCrop = binding.findViewById(R.id.btnCrop)
         btnDelete = binding.findViewById(R.id.btnDelete)
-        btnAnalyze = binding.findViewById(R.id.analyzeButton)  // Inisialisasi tombol Analisis
+        btnAnalyze = binding.findViewById(R.id.analyzeButton)
 
-        classifierHelper = ImageClassifierHelper(requireContext())  // Inisialisasi ImageClassifierHelper
+        classifierHelper = ImageClassifierHelper(requireContext())
 
-        // Get the image URI passed from ScanFragment
         val imageUriString = arguments?.getString("imageUri")
         imageUriString?.let {
             val imageUri = Uri.parse(it)
             showCapturedImage(imageUri)
 
-            // Set up crop button functionality
             btnCrop.setOnClickListener {
                 startCropImage(imageUri)
             }
@@ -61,14 +59,12 @@ class UploadFragment : Fragment() {
             Toast.makeText(requireContext(), "Failed to load image.", Toast.LENGTH_SHORT).show()
         }
 
-        // Set up delete button functionality
         btnDelete.setOnClickListener {
-            deleteImage() // Hapus gambar
+            deleteImage()
         }
 
-        // Set up analyze button functionality to run AI model
         btnAnalyze.setOnClickListener {
-            analyzeImage() // Menjalankan model AI untuk analisis gambar
+            analyzeImage()
         }
 
         return binding
@@ -98,38 +94,42 @@ class UploadFragment : Fragment() {
     }
 
     private fun analyzeImage() {
-        // Cek apakah gambar ada di ImageView
         val bitmap = (imageView.drawable as? BitmapDrawable)?.bitmap
         bitmap?.let {
             val result = runModelAI(it)
-            // Setelah mendapatkan hasil, navigasi ke ResultFragment dan kirimkan hasilnya
-            val action = UploadFragmentDirections.actionUploadFragmentToResultFragment(result)
+
+            // Set image and result in the ViewModel
+            resultViewModel.setImage(it)
+            resultViewModel.setResult(result.first) // Set label in ViewModel
+
+            // Navigate to ResultFragment with result and description
+            val action = UploadFragmentDirections.actionUploadFragmentToResultFragment(
+                result = result.first,
+                imageUri = result.second,
+                description = result.second, // Ensure this is provided
+            )
             findNavController().navigate(action)
         } ?: run {
             Toast.makeText(requireContext(), "No image to analyze", Toast.LENGTH_SHORT).show()
         }
     }
 
-    // Fungsi untuk menjalankan model AI dan mendapatkan hasil prediksi
-    private fun runModelAI(bitmap: Bitmap): String {
+
+    private fun runModelAI(bitmap: Bitmap): Pair<String, String> {
         return try {
-            // Memanggil fungsi classifyImage dari ImageClassifierHelper
-            val result = classifierHelper.classifyImage(bitmap)
-            result
+            val resizedBitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
+            classifierHelper.classifyImage(resizedBitmap) // Return Pair directly
         } catch (e: Exception) {
             e.printStackTrace()
-            "Error analyzing image"
+            Pair("Error", "Error analyzing image") // Default error case
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (resultCode == Activity.RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
             val resultUri = UCrop.getOutput(data!!)
-            resultUri?.let {
-                showCapturedImage(it)
-            }
+            resultUri?.let { showCapturedImage(it) }
         } else if (resultCode == UCrop.RESULT_ERROR) {
             val cropError = UCrop.getError(data!!)
             cropError?.printStackTrace()
@@ -139,6 +139,6 @@ class UploadFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        classifierHelper.close()  // Tutup model ketika fragment dihancurkan
+        classifierHelper.close()
     }
 }

@@ -1,42 +1,57 @@
 package com.example.reto.ui.news
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.reto.R
 import com.example.reto.databinding.FragmentNewsBinding
 import com.example.reto.data.remote.api.ApiConfig
 import com.example.reto.data.remote.response.NewsApiResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.reto.data.remote.response.NewsResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import java.net.UnknownHostException
 
 class NewsFragment : Fragment() {
 
     private lateinit var binding: FragmentNewsBinding
-    private lateinit var viewModel: NewsViewModel
     private lateinit var newsAdapter: NewsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentNewsBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
 
         setupRecyclerView()
         setupListeners()
+        fetchAllNews() // Load all news by default
 
         return binding.root
     }
 
     private fun setupRecyclerView() {
-        newsAdapter = NewsAdapter(mutableListOf())  // Initialize with an empty mutable list
+        newsAdapter = NewsAdapter(
+            mutableListOf(),
+            onItemClick = { article ->
+                val bundle = bundleOf("url" to article.articleLink)
+                findNavController().navigate(
+                    R.id.navigation_webview,  // Make sure this ID matches your nav graph
+                    bundle
+                )
+            }
+        )
         binding.rvNews.layoutManager = LinearLayoutManager(requireContext())
         binding.rvNews.adapter = newsAdapter
     }
@@ -56,121 +71,70 @@ class NewsFragment : Fragment() {
     }
 
     private fun fetchAllNews() {
-        // Show progress bar
         showLoading(true)
-
-        // Clear the old data from adapter
         newsAdapter.updateData(mutableListOf())
 
         val apiService = ApiConfig.getApiService()
 
-        val callOrganic = apiService.getOrganikNews()
-        val callNonOrganic = apiService.getNonOrganikNews()
+        lifecycleScope.launch {
+            try {
+                val organikDeferred = async(Dispatchers.IO) { apiService.getOrganikNews() }
+                val nonOrganikDeferred = async(Dispatchers.IO) { apiService.getNonOrganikNews() }
 
-        callOrganic.enqueue(object : Callback<NewsApiResponse> {
-            override fun onResponse(call: Call<NewsApiResponse>, response: Response<NewsApiResponse>) {
-                if (response.isSuccessful) {
-                    val newsApiResponse = response.body()
-                    if (newsApiResponse != null && newsApiResponse.success) {
-                        newsApiResponse.articles?.let {
-                            Log.d("NewsFragment", "Received organic articles size: ${it.size}")
-                            newsAdapter.updateData(it)  // Update the RecyclerView with new data
-                        } ?: run {
-                            Log.e("NewsFragment", "No articles available in response")
-                        }
-                    } else {
-                        Log.e("NewsFragment", "Failed to load organic articles")
-                    }
-                } else {
-                    Log.e("NewsFragment", "Failed to load organic news: ${response.message()}")
+                val organikResponse = organikDeferred.await()
+                val nonOrganikResponse = nonOrganikDeferred.await()
+
+                val articles = mutableListOf<NewsResponse>().apply {
+                    organikResponse.articles?.let { addAll(it) }
+                    nonOrganikResponse.articles?.let { addAll(it) }
                 }
-                // After receiving data, hide the progress bar
-                showLoading(false)
-            }
 
-            override fun onFailure(call: Call<NewsApiResponse>, t: Throwable) {
-                Log.e("NewsFragment", "Error: ${t.message}")
-                showLoading(false)
-            }
-        })
+                newsAdapter.updateData(articles)
 
-        callNonOrganic.enqueue(object : Callback<NewsApiResponse> {
-            override fun onResponse(call: Call<NewsApiResponse>, response: Response<NewsApiResponse>) {
-                if (response.isSuccessful) {
-                    val newsApiResponse = response.body()
-                    if (newsApiResponse != null && newsApiResponse.success) {
-                        newsApiResponse.articles?.let {
-                            Log.d("NewsFragment", "Received non-organic articles size: ${it.size}")
-                            newsAdapter.updateData(it)  // Update the RecyclerView with new data
-                        } ?: run {
-                            Log.e("NewsFragment", "No articles available in response")
-                        }
-                    } else {
-                        Log.e("NewsFragment", "Failed to load non-organic articles")
-                    }
-                } else {
-                    Log.e("NewsFragment", "Failed to load non-organic news: ${response.message()}")
-                }
-                // After receiving data, hide the progress bar
+            } catch (e: Exception) {
+                Log.e("NewsFragment", "Error: ${e.message}")
+                Toast.makeText(requireContext(), "Gagal memuat berita: ${e.message}", Toast.LENGTH_SHORT).show()
+            } finally {
                 showLoading(false)
             }
-
-            override fun onFailure(call: Call<NewsApiResponse>, t: Throwable) {
-                Log.e("NewsFragment", "Error: ${t.message}")
-                showLoading(false)
-            }
-        })
+        }
     }
 
     private fun fetchNews(type: String) {
-        // Show progress bar
         showLoading(true)
-
-        // Clear the old data from adapter
         newsAdapter.updateData(mutableListOf())
 
         val apiService = ApiConfig.getApiService()
 
-        val call = if (type == "organik") {
-            apiService.getOrganikNews()
-        } else {
-            apiService.getNonOrganikNews()
-        }
-
-        call.enqueue(object : Callback<NewsApiResponse> {
-            override fun onResponse(call: Call<NewsApiResponse>, response: Response<NewsApiResponse>) {
-                if (response.isSuccessful) {
-                    val newsApiResponse = response.body()
-                    if (newsApiResponse != null && newsApiResponse.success) {
-                        newsApiResponse.articles?.let {
-                            Log.d("NewsFragment", "Received articles size: ${it.size}")
-                            newsAdapter.updateData(it)  // Update the RecyclerView with new data
-                        } ?: run {
-                            Log.e("NewsFragment", "No articles available in response")
-                        }
-                    } else {
-                        Log.e("NewsFragment", "Failed to load articles: ${newsApiResponse?.message}")
-                        Toast.makeText(requireContext(), "Gagal memuat artikel", Toast.LENGTH_SHORT).show()
-                    }
-                } else {
-                    Log.e("NewsFragment", "Failed to load news: ${response.message()}")
-                    Toast.makeText(requireContext(), "Gagal memuat berita", Toast.LENGTH_SHORT).show()
+        lifecycleScope.launch {
+            try {
+                val response = when (type) {
+                    "organik" -> apiService.getOrganikNews()
+                    "non-organik" -> apiService.getNonOrganikNews()
+                    else -> throw IllegalArgumentException("Unknown news type")
                 }
-                // After receiving data, hide the progress bar
-                showLoading(false)
-            }
 
-            override fun onFailure(call: Call<NewsApiResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                response.articles?.let {
+                    newsAdapter.updateData(it)
+                } ?: run {
+                    Toast.makeText(requireContext(), "Tidak ada artikel tersedia", Toast.LENGTH_SHORT).show()
+                }
+
+            } catch (e: Exception) {
+                if (e is UnknownHostException) {
+                    Log.e("NewsFragment", "Unable to resolve host: ${e.message}")
+                    Toast.makeText(requireContext(), "Tidak dapat terhubung ke server. Periksa koneksi internet Anda.", Toast.LENGTH_LONG).show()
+                } else {
+                    Log.e("NewsFragment", "Error: ${e.message}")
+                    Toast.makeText(requireContext(), "Terjadi kesalahan: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            } finally {
                 showLoading(false)
             }
-        })
+        }
     }
-
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }
-
-

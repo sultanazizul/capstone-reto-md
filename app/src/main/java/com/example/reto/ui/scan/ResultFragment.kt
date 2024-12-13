@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import com.example.reto.R
 
 class ResultFragment : Fragment() {
@@ -14,6 +15,7 @@ class ResultFragment : Fragment() {
     private lateinit var ivPreview: ImageView
     private lateinit var tvResultName: TextView
     private lateinit var tvResultDescription: TextView
+    private val resultViewModel: ResultViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,10 +31,15 @@ class ResultFragment : Fragment() {
         tvResultName = view.findViewById(R.id.tvResultName)
         tvResultDescription = view.findViewById(R.id.tvResultDescription)
 
-        val result = arguments?.getString("prediction") ?: "No result"
-        tvResultName.text = result
+        val result = arguments?.getString("result") ?: "No result"
+        val description = arguments?.getString("description") ?: "No description available"
 
-        // Update deskripsi lebih lanjut jika perlu
-        tvResultDescription.text = "Prediksi ini didasarkan pada model deteksi sampah."
+        tvResultName.text = result
+        tvResultDescription.text = description
+
+        resultViewModel.imageLiveData.observe(viewLifecycleOwner) { imageBitmap ->
+            ivPreview.setImageBitmap(imageBitmap)
+        }
     }
 }
+

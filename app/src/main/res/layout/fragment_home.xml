@@ -20,21 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:ignore="MissingConstraints">
-    <ImageButton
-        android:id="@+id/logoutButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="end"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/app_name"
-        app:tint="@color/darkGreen"
-        android:src="@drawable/ic_logout" />
-</FrameLayout>
-
     <TextView
         android:id="@+id/tvDescHome"
         android:layout_width="0dp"
@@ -112,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvSeeAllKnowledge" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNews"
+        android:id="@+id/rvNewsHome"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/tvTitleNews"
